@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/master.css">
+    <title>Make a Noise!</title>
+  </head>
+
+  <script type="text/javascript">
+    function check() {
+      ok = true;
+
+      if (poster.value == "") {
+        ok = false;
+        errNoPoster.style.visibility = "visible";
+      } else {
+        errNoPoster.style.visibility = "hidden";
+      }
+
+      if (content.value == "") {
+        ok = false;
+        errNoContent.style.visibility = "visible";
+      } else {
+        errNoContent.style.visibility = "hidden";
+      }
+
+      if (content.value.length > 256) {
+        errContentLength.style.visibility = "visible";
+        ok = false;
+      } else {
+        errContentLength.style.visibility = "hidden";
+      }
+
+      return ok;
+    }
+  </script>
+
+  <body>
+    <div class="main">
+      <form action="http://localhost:8080/createBirdNoise" method="post" enctype="multipart/form-data" onsubmit="return check()">
+        <fieldset>
+          <legend>Make a Noise!</legend>
+          <label for="poster">User: </label>
+          <input type="text" id="poster" name="poster" value="">
+          <span class="err" id="errNoPoster">Please enter a user</span>
+          <br>
+          <textarea name="content" id="content" rows="5" cols="64"></textarea>
+          <div>
+            <span class="err" id="errNoContent">Please enter some content</span>
+            <br>
+            <span class="err" id="errContentLength">Content must not be more than 256 characters</span>
+          </div>
+        </fieldset>
+        <input type="submit" name="submit" value="Create!">
+      </form>
+    </div>
+  </body>
+</html>
