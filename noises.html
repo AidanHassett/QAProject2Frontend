@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/master.css">
+    <title>The Noises!</title>
+  </head>
+
+  <script type="text/javascript">
+    let xhr = new XMLHttpRequest();
+    let headers = new Headers()
+    xhr.open("get", "http://localhost:8080/getAllBirdNoises");
+    xhr.send();
+    xhr.onload = function() {
+      alert(xhr.responseText)
+    }
+  </script>
+
+  <body>
+    <div class="main">
+      <h1>The Noises!</h1>
+    </div>
+  </body>
+</html>
